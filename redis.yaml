@@ -5,7 +5,7 @@ metadata:
 spec:
   replicas: 2
   selector:
-    app: nginx
+    app: redis
   template:
     metadata:
       name: redis
