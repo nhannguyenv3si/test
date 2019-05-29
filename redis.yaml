@@ -5,15 +5,23 @@ metadata:
 spec:
   replicas: 2
   selector:
-    app: redis
+    name: redis
   template:
     metadata:
-      name: redis
       labels:
-        app: redis
+        name: redis
+        role: master
     spec:
       containers:
       - name: redis
-        image: redis
+        image: k8s.gcr.io/redis:v1
         ports:
         - containerPort: 6379
+        resources:
+          limits:
+            cpu: "0.1"
+        volumeMounts:
+        - mountPath: /redis-master-data
+          name: data
+      volumes:
+        - name: data
